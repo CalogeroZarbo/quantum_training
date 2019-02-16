@@ -5,7 +5,7 @@ from dwave.system.composites import EmbeddingComposite
 import dimod
 
 
-shots = 100
+shots = 1000
 # Converting the Model and Checking the formulation
 bqm = dimod.BinaryQuadraticModel({0: -1, 1: -1}, {(0, 1): 2}, 0.0, dimod.BINARY)
 bqm_ising = bqm.change_vartype(dimod.SPIN, inplace=False)
@@ -21,9 +21,9 @@ response = sampler.sample(bqm_ising, num_reads=shots)
 
 print('\n************ Check Results using EmbeddingComposite **************')
 for sample, energy, num_occurrences in response.data(['sample', 'energy', 'num_occurrences']):
-    print(sample,energy, num_occurrences*100/shots)
+    print('s0:', sample[0],'|','s1:',sample[1],'|', 'Energy:',energy, '|', 'Probability:',num_occurrences*100/shots)
 
 
 print('\n************ Check Results using dmod.ExactSolver **************')
 response_2 = dimod.ExactSolver().sample(bqm_ising)
-for sample, energy in response.data(['sample', 'energy']): print(sample, energy)
+for sample, energy in response.data(['sample', 'energy']): print('s0:', sample[0],'|','s1:',sample[1],'|', 'Energy:',energy)
