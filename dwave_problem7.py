@@ -18,9 +18,9 @@ import dwavebinarycsp
 import dimod
 import operator
 
+
 def not_all_equal(q1, q2, q3): 
     return not ((q1 == q2) and (q2 == q3))
-
 
 csp = dwavebinarycsp.ConstraintSatisfactionProblem(vartype=dimod.Vartype.SPIN) 
 csp.add_constraint(not_all_equal, ['q1', 'q2', 'q3'])
