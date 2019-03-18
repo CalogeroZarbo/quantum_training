@@ -14,6 +14,7 @@
 
 from dwave.system.composites import EmbeddingComposite
 from dwave.system.samplers import DWaveSampler
+from dimod import ExactSolver
 import dwavebinarycsp
 import dimod
 import operator
@@ -30,7 +31,19 @@ my_bqm = dwavebinarycsp.stitch(csp)
 
 print(my_bqm)
 
+
+print('Classical Solver')
+sampler = ExactSolver()
+response = sampler.sample(my_bqm)
+for sample, energy, occurrences in response.data(['sample', 'energy', 'num_occurrences']):
+    print(list(sample.values()),'Occurrences :',occurrences,'Energy :',energy)
+
+print('DWave Solver')
 sampler = EmbeddingComposite(DWaveSampler())
 response = sampler.sample(my_bqm, num_reads = 5000)
 for sample, energy, occurences in response.data(['sample', 'energy', 'num_occurrences']):
     print(list(sample.values()), 'Occurrences:', occurences, 'Energy:', energy)
+
+print('The correct answer is 18, while I said 10.')
+print('I got busted by the stochastic nature of the Quantum Solver, which does not give all the results, and not always the same ones.')
+print('Credit to Yasas for the explanation: https://github.com/yasasp/Dwave-Challenges/blob/master/dwc8.py')
