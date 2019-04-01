@@ -1,3 +1,7 @@
 .idea/
 .vscode/
 .ipynb_checkpoints/
+managed-service-qc-tf/
+__pycache__/
+*.csv
+data/
