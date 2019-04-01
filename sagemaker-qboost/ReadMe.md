@@ -27,10 +27,10 @@ The components are as follows:
 
 When SageMaker starts a container, it will invoke the container with an argument of either __train__ or __serve__. We have set this container up so that the argument in treated as the command that the container executes. When training, it will run the __train__ program included and, when serving, it will run the __serve__ program.
 
-* __train__: The main program for training the model. When you build your own algorithm, you'll edit this to include your training code.
-* __serve__: The wrapper that starts the inference server. In most cases, you can use this file as-is.
+* __train__: The main program for training the model. When you build your own algorithm, you'll edit this to include your training code. In this example we will connect to the D-Wave machine to perform the training.
+* __serve__: The wrapper that starts the inference server. In most cases, you can use this file as-is. 
 * __wsgi.py__: The start up shell for the individual server workers. This only needs to be changed if you changed where predictor.py is located or is named.
-* __predictor.py__: The algorithm-specific inference server. This is the file that you modify with your own algorithm's code.
+* __predictor.py__: The algorithm-specific inference server. This is the file that you modify with your own algorithm's code. It will perform the inference of your quantumply trained model in a classical environment.
 * __nginx.conf__: The configuration for the nginx master server that manages the multiple workers.
 
 
@@ -47,12 +47,12 @@ can be supplied as part of the CreateModel API call.
 
 ## Usage
 
-1) Run the script: create_wisc_datasets.py: this will create a folder _data_ and will put inside it two files, one for training and one for testing
-2) Get your AWS credentials, AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY,and export them into your environment variables
-3) Run the following commands to build the container and push the image in Amazon ECR:
+1. Run the script: create_wisc_datasets.py: this will create a folder _data_ and will put inside it two files, one for training and one for testing
+2. Get your AWS credentials, AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY,and export them into your environment variables
+3. Run the following commands to build the container and push the image in Amazon ECR:
     chmod +wrx build_and_push.sh && ./build_and_push.sh qboost-sagemaker-example
-4) Once it's done open AWS SageMaker and start a Jupyter Notebook instance
-5) Follow the instruction in qboost-on-sagemaker.ipynb in this repository
+4. Once it's done open AWS SageMaker and start a Jupyter Lab instance
+5. Follow the instruction in qboost-on-sagemaker.ipynb in this repository
 
 ## Disclamier
 
