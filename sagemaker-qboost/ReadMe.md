@@ -1,4 +1,4 @@
-# QBoost on AWS Sagemaker
+# Fully Managed D-Wave / Google QBoost on AWS SageMaker
 
 This example shows how to package a QBoost algorithm for use with SageMaker. I have chosen a simple [QBoost][qbst] implementation made by D-Wave, based on the algorithm developed by Google, to illustrate the procedure.
 
