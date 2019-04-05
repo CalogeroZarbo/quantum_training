@@ -47,11 +47,11 @@ can be supplied as part of the CreateModel API call.
 
 ## Usage
 
-1. Run the script: create_wisc_datasets.py: this will create a folder _data_ and will put inside it two files, one for training and one for testing
-2. Get your AWS credentials, AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY,and export them into your environment variables
+1. Run the script: create_wisc_datasets.py: this will create the folder _data_ in your local machine, and will generate inside it two files, one for training and one for testing
+2. Please get your AWS credentials, AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY, and export them as environment variables
 3. Run the following commands to build the container and push the image in Amazon ECR:
     chmod +wrx build_and_push.sh && ./build_and_push.sh qboost-sagemaker-example
-4. Once it's done open AWS SageMaker and start a Jupyter Lab instance
+4. Once it's done, please open AWS SageMaker and start a Jupyter Notebook instance
 5. Follow the instruction in qboost-on-sagemaker.ipynb in this repository
 
 ## Disclamier
